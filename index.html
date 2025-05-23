@@ -122,44 +122,6 @@
 
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Qualitative Results on Davis Dataset</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/davis_compare.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
-  </div>
-</section>
-
-
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -192,6 +154,52 @@
 
 
 
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Animation</h2>
+
+        <!-- Qualitative Results on Davis Dataset. -->
+        <h3 class="title is-4">Qualitative Results on Davis Dataset</h3>
+        <div class="content has-text-justified">
+          <!-- <p>
+            Using <span class="dnerf">Instant4D</span>, you can reconstruct a casual video efficiently with low memory usage. Whereas, our methods achieve state-of-the-art performance on visual quality.
+          </p> -->
+        </div>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 width="75%">
+            <source src="./static/videos/davis_new.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <!--/ Qualitative Results on Davis Dataset. -->
+
+
+        <!-- Evaluation Metrics -->
+        <h3 class="title is-4">Quantitative Results on the Dycheck Dataset</h3>
+        <div class="content has-text-justified">
+          <!-- <p>
+            Using <span class="dnerf">Instant4D</span>, you can reconstruct a casual video efficiently with low memory usage. Whereas, our methods achieve state-of-the-art performance on visual quality.
+          </p> -->
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/Dycheck_Result.png" alt="Dycheck Results" style="width: 100%; height: auto;">
+        </div>
+        <!--/ Evaluation Metrics. -->
+
+      </div>
+    </div>
+    <!--/ Animation. -->
 
 
   </div>
