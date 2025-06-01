@@ -79,20 +79,20 @@
       <div id="results-carousel" class="carousel results-carousel">
        
         <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+          <video poster="" id="einstein" autoplay controls muted loop playsinline height="100%">
             <source src="./static/videos/Einstein_ours.mp4"
                     type="video/mp4">
           </video>
         </div>
         <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+          <video poster="" id="panda" autoplay controls muted loop playsinline height="100%">
             <source src="./static/videos/panda_ours.mp4"
                     type="video/mp4">
           </video>
         </div>
         <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/Einstein_ours.mp4"
+          <video poster="" id="market" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/market.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -164,17 +164,16 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Method Pipeline</h2>
-        <div class="content has-text-justified">
-
-            Pipeline of Instant4D. We use Deep Visual SLAM model and Unidepth to obtain
-            camera parameters, and metric depth. The metrics depth would be further optimized to consistent
-            video depth. After that we back project from consistent depth to get dense point cloud, further voxel
-            filtered to sparse point cloud, as discuss in Section 3.2. Based on the 4d Gaussians Initialization, we
-            can reconstruct a scene in 2 minutes. More details about optimization are described in Section 3.3.
-
-        </div>
         <div class="content has-text-centered">
           <img src="./static/images/Model_Pipe.png" alt="Model Pipeline" style="width: 100%; height: auto;">
+        </div>
+
+        <div class="content has-text-justified">
+          Pipeline of Instant4D. We use Deep Visual SLAM model and Unidepth to obtain
+          camera parameters, and metric depth. The metrics depth would be further optimized to consistent
+          video depth. After that we back project from consistent depth to get dense point cloud, further voxel
+          filtered to sparse point cloud, as discuss in Section 3.2. Based on the 4d Gaussians Initialization, we
+          can reconstruct a scene in 2 minutes. More details about optimization are described in Section 3.3.
         </div>
         <!--/ Evaluation Metrics. -->
 
