@@ -165,9 +165,13 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Method Pipeline</h2>
         <div class="content has-text-justified">
-          <!-- <p>
-            Using <span class="dnerf">Instant4D</span>, you can reconstruct a casual video efficiently with low memory usage. Whereas, our methods achieve state-of-the-art performance on visual quality.
-          </p> -->
+
+            Pipeline of Instant4D. We use Deep Visual SLAM model and Unidepth to obtain
+            camera parameters, and metric depth. The metrics depth would be further optimized to consistent
+            video depth. After that we back project from consistent depth to get dense point cloud, further voxel
+            filtered to sparse point cloud, as discuss in Section 3.2. Based on the 4d Gaussians Initialization, we
+            can reconstruct a scene in 2 minutes. More details about optimization are described in Section 3.3.
+
         </div>
         <div class="content has-text-centered">
           <img src="./static/images/Model_Pipe.png" alt="Model Pipeline" style="width: 100%; height: auto;">
