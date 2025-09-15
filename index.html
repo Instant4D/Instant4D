@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Efficient Reconstruction for a Causal Video in Minutes.">
+  <meta name="keywords" content="4D Gaussian Splatting, Visual SLAM, Casual Video">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instant4D: 4D Gaussian Splatting in Minutes</title>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+</head>
+<body>
+
+
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Instant4D: 4D Gaussian Splatting in Minutes</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+    <!--
+      Add the image Teaser.png here 
+      -->
+      <img src="./static/images/Teaser.png" alt="Teaser" style="width: 100%; height: auto;">
+
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Instant4D</span> reconstructs a causal video in minutes.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Highlights</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li> We propose <strong>Instant4D</strong>, a modern and fully automated pipeline that reconstructs casual monocular videos in few minutes, achieving 30x speed up.</li>
+            <li> We introduce a grid pruning strategy that reduces the number of Gaussians by <strong>92%</strong>, preserving the occlusion structures and enabling scalability to long video sequences.</li>
+            <li> We present a novel design for 4DGS in monocular setup, which achieves <strong>29%</strong> better than current state-of-the-art methods on the Dycheck Dataset</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+       
+        <div class="item item-coffee">
+          <video poster="" id="einstein_updated" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/ein_fixed.mp4"
+                    type="video/mp4">
+          </video>
+          <div class="video-caption">
+            <p>Einstein's Bear Ride</p>
+          </div>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="panda_updated" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/panda_fixed.mp4"
+                    type="video/mp4">
+          </video>
+          <div class="video-caption">
+            <p>Panda Guitar Serenade</p>
+          </div>
+        </div>
+        <div class="item item-market">
+          <video poster="" id="market_updated" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/market_fixed.mp4"
+                    type="video/mp4">
+          </video>
+          <div class="video-caption">
+            <p>Bear's Sweet Surprise</p>
+          </div>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="pizza_updated" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/pizza_fixed.mp4"
+                    type="video/mp4">
+          </video>
+          <div class="video-caption">
+            <p>Fox Makes Pizza</p>
+          </div>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="sheep_updated" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/sheep_fixed.mp4"
+                    type="video/mp4">
+          </video>
+          <div class="video-caption">
+            <p>Sheep Vendor Fantasy</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-fifths">
+      <strong>Videos:</strong> The above videos display the reconstuction results from the sora generated videos. Each video is 9:16 aspect ratio with 5 seconds duration. 
+      The reconstruction process for each video takes around 5 minutes including preprocessing time.
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<section class="hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this work, we present <strong>Instant4D</strong>, a monocular reconstruction system that leverages native 4D representation to efficiently process casual video sequences within minutes, without calibrated cameras or depth sensors.
+            reconstruction system that leverages native 4D representation to efficiently process
+            casual video sequences within minutes, without calibrated cameras or depth sensors.
+          </p>
+          <p>
+            Our method begins with geometric recovery through deep visual SLAM, followed
+            by grid pruning to optimize scene representation. Our design significantly reduces
+            redundancy while maintaining geometric integrity, cutting model size to under <strong>10%</strong>
+            of its original footprint. To handle temporal dynamics efficiently, we introduce a
+            streamlined 4D Gaussian representation, achieving a <strong>30x</strong> speed-up and reducing
+            training time to within two minutes, while maintaining competitive performance
+            across several benchmarks. We further apply our model to in-the-wild videos,
+            showcasing its generalizability.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method Pipeline</h2>
+        <div class="content has-text-centered">
+          <img src="./static/images/Model_Pipe.png" alt="Model Pipeline" style="width: 100%; height: auto;">
+        </div>
+
+        <div class="content has-text-justified">
+          <strong>Figure 1:</strong> Pipeline of Instant4D. We use Deep Visual SLAM model and Unidepth to obtain
+          camera parameters, and metric depth. The metrics depth would be further optimized to consistent
+          video depth. After that we back project from consistent depth to get dense point cloud, further voxel
+          filtered to sparse point cloud, as discuss in Section 3.2. Based on the 4d Gaussians Initialization, we
+          can reconstruct a scene in 2 minutes. More details about optimization are described in Section 3.3.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  <iframe id="myIframe" src="videoComparer.html" frameborder="0" style="width:100%;"></iframe>
+
+
+
+
+<script>
+  const iframe = document.getElementById("myIframe");
+
+  function resizeIframe() {
+    if (iframe.contentWindow && iframe.contentWindow.document) {
+      const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+      iframe.style.height = innerDoc.body.scrollHeight*1.15 + "px";
+    }
+  }
+
+  // 初始加载
+  iframe.onload = resizeIframe;
+
+  // 窗口大小变化时，重新调整高度
+  window.addEventListener("resize", resizeIframe);
+</script>
+
+
+
+<section class="hero is-light">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <img src="./static/images/dycheck.png" alt="Dycheck Results" style="width: 100%; height: auto;">
+    </div>
+    <div class="content has-text-justified">
+      <strong>Figure 2:</strong> Qualitative results on Dycheck dataset.
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <img src="./static/images/Dycheck_Result.png" alt="Dycheck Results" style="width: 100%; height: auto;">
+    </div>
+    <div class="content has-text-justified">
+      <strong>Table 2:</strong> DyCheck iPhone benchmark. Methods above the mid-rule are trained with ground-truth
+      camera; those below operate without calibrated poses. Runtime denotes the mean training time per
+      scene and Mem the peak GPU memory during optimization. Runtime for RoDyGS, RoDynRF, and
+      D-NeRF is provided by the authors of RodyGS.
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+
+
+
+</html>

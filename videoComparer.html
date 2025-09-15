@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      background: #fff;
+      margin: 0;
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+    }
+
+    .video-compare-item {
+      display: none;
+      height: auto;
+      margin: 40px auto;
+      width: 50%;
+    }
+
+    .video-compare-item.active {
+      display: block;
+      height: auto;
+    }
+
+    .video-compare-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      /* 16:9 高宽比 */
+    }
+
+    .video-compare-container>video,
+    .video-clipper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* 填满容器 */
+      object-fit: cover;
+      /* 裁剪 */
+    }
+
+    .video-clipper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+
+    .video-clipper video {
+      width: 200%;
+      position: absolute;
+      height: auto;
+    }
+
+    #src-0 {
+      width: 100%;
+      /* 占满容器宽度 */
+      height: auto;
+      /* 高度自适应，保持比例 */
+      display: block;
+      /* 避免出现下方空隙 */
+      object-fit: cover;
+      /* 如果想填满容器并裁切多余部分 */
+    }
+
+    #tgt-0 {
+      width: 100%;
+      /* 占满容器宽度 */
+      height: auto;
+      /* 高度自适应，保持比例 */
+      display: block;
+      /* 避免出现下方空隙 */
+      object-fit: cover;
+      /* 如果想填满容器并裁切多余部分 */
+    }
+
+    .video-label {
+      position: absolute;
+      bottom: 15px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      z-index: 10;
+    }
+
+    .video-label.left {
+      left: 15px;
+    }
+
+    .video-label.right {
+      right: 15px;
+    }
+
+
+    .dividing-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      /* 竖线贴左边 */
+      width: 3px;
+      /* 就是线的宽度 */
+      pointer-events: none;
+      z-index: 20;
+      background: linear-gradient(to bottom,
+          transparent 5%,
+          #fff 10%,
+          #fff 90%,
+          transparent 95%);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    }
+
+    /* 圆圈：挂在竖线的正中间 */
+    .circle {
+      position: absolute;
+      top: 50%;
+      /* 垂直居中 */
+      left: 50%;
+      /* 在线条中点 */
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: transparent;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 箭头 */
+    .arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    .arrow.left {
+      left: 5px;
+      border-width: 8px 10px 8px 0;
+      border-color: transparent #fff transparent transparent;
+    }
+
+    .arrow.right {
+      right: 5px;
+      border-width: 8px 0 8px 10px;
+      border-color: transparent transparent transparent #fff;
+    }
+
+
+
+
+    .carousel-nav {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .nav-btn {
+      background: #3273dc;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .nav-btn:hover {
+      background: #2366d1;
+    }
+
+    .nav-btn.active {
+      background: #23d160;
+    }
+
+    .video-title {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="carousel-container">
+    <center>
+      <h1>Video Comparisons</h1>
+      <h3>Click on video to play/pause. Move mouse to change the divider.</h3>
+    </center>
+
+    <div class="carousel-nav">
+      <button class="nav-btn active" onclick="showComparison(0)">Bear</button>
+      <button class="nav-btn" onclick="showComparison(1)">Rhino</button>
+      <button class="nav-btn" onclick="showComparison(2)">Bird</button>
+    </div>
+
+    <!-- Bear Comparison -->
+    <div class="video-compare-item active" id="comparison-0">
+      <div class="video-title">Bear - Ours vs Baseline</div>
+      <div id="video-compare-container-0" class="video-compare-container">
+        <video id='src-0' loop muted onclick="video_click(0)">
+          <source src="./static/videos/bear_compare.mp4">
+        </video>
+
+        <div id="video-clipper-0" class="video-clipper">
+
+          <video id='tgt-0' loop muted onclick="video_click(0)">
+            <source src="./static/videos/DAVIS_Bear_Ours.mp4">
+          </video>
+          <div class="video-label left">Ours</div>
+
+        </div>
+        <div class="video-label right">RoDyGS [Jeong 24]</div>
+        <div class="dividing-line" id="dividing-line-0">
+          <div class="circle">
+            <span class="arrow left"></span>
+            <span class="arrow right"></span>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- Rhino Comparison -->
+    <div class="video-compare-item" id="comparison-1">
+      <div class="video-title">Bear - Ours vs Baseline</div>
+      <div id="video-compare-container-1" class="video-compare-container">
+        <video id='src-1' loop muted onclick="video_click(1)">
+          <source src="./static/videos/rhino_compare.mp4">
+        </video>
+
+        <div id="video-clipper-1" class="video-clipper">
+
+          <video id='tgt-1' loop muted onclick="video_click(1)">
+            <source src="./static/videos/DAVIS_Rhino_Ours.mp4">
+          </video>
+          <div class="video-label left">Ours</div>
+
+        </div>
+        <div class="video-label right">RoDyGS [Jeong 24]</div>
+        <div class="dividing-line" id="dividing-line-1">
+          <div class="circle">
+            <span class="arrow left"></span>
+            <span class="arrow right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-compare-item" id="comparison-2">
+      <div class="video-title">Bear - Ours vs Baseline</div>
+      <div id="video-compare-container-2" class="video-compare-container">
+        <video id='src-2' loop muted onclick="video_click(2)">
+          <source src="./static/videos/rhino_compare.mp4">
+        </video>
+
+        <div id="video-clipper-2" class="video-clipper">
+
+          <video id='tgt-2' loop muted onclick="video_click(2)">
+            <source src="./static/videos/DAVIS_Rhino_Ours.mp4">
+          </video>
+          <div class="video-label left">Ours</div>
+
+        </div>
+        <div class="video-label right">RoDyGS [Jeong 24]</div>
+        <div class="dividing-line" id="dividing-line-2">
+          <div class="circle">
+            <span class="arrow left"></span>
+            <span class="arrow right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentComparison = 0;
+
+    function showComparison(index) {
+      // Hide all comparisons
+      const items = document.querySelectorAll('.video-compare-item');
+      const btns = document.querySelectorAll('.nav-btn');
+
+      items.forEach(item => item.classList.remove('active'));
+      btns.forEach(btn => btn.classList.remove('active'));
+
+      // Show selected comparison
+      document.getElementById(`comparison-${index}`).classList.add('active');
+      btns[index].classList.add('active');
+
+      currentComparison = index;
+      setupVideoControls();
+    }
+
+    function video_click(index) {
+      const v = document.getElementById(`src-${index}`);
+      const v2 = document.getElementById(`tgt-${index}`);
+
+      if (v.paused) {
+        v.play();
+        v2.play();
+      } else {
+        v.pause();
+        v2.pause();
+      }
+
+      v.currentTime = v2.currentTime;
+      v2.currentTime = v.currentTime;
+    }
+
+    function setupVideoControls() {
+      const videoContainer = document.getElementById(`video-compare-container-${currentComparison}`);
+      const videoClipper = document.getElementById(`video-clipper-${currentComparison}`);
+      const clippedVideo = videoClipper.getElementsByTagName("video")[0];
+      const dividingLine = document.getElementById(`dividing-line-${currentComparison}`);
+      const rightLabel = videoClipper.querySelector('.video-label.right');
+
+      function trackLocation(e) {
+        const rect = videoContainer.getBoundingClientRect();
+        const position = ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
+        if (position <= 100 && position >= 0) {
+          videoClipper.style.width = position + "%";
+          clippedVideo.style.width = ((100 / position) * 100) + "%";
+          clippedVideo.style.zIndex = 3;
+
+          // Update dividing line position
+          if (dividingLine) {
+            dividingLine.style.left = position + "%";
+          }
+
+        }
+      }
+
+      // Remove previous event listeners from all containers
+      document.querySelectorAll('.video-compare-container').forEach(container => {
+        container.removeEventListener("mousemove", trackLocation);
+        container.removeEventListener("touchstart", trackLocation);
+        container.removeEventListener("touchmove", trackLocation);
+      });
+
+      // Add event listeners to current container
+      videoContainer.addEventListener("mousemove", trackLocation, false);
+      videoContainer.addEventListener("touchstart", trackLocation, false);
+      videoContainer.addEventListener("touchmove", trackLocation, false);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      setupVideoControls();
+
+      // Set initial dividing line positions for all comparisons
+      for (let i = 0; i < 2; i++) {
+        const dividingLine = document.getElementById(`dividing-line-${i}`);
+        if (dividingLine) {
+          dividingLine.style.left = "50%";
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

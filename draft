@@ -1,0 +1,25 @@
+
+    /* Ensure right label stays within the clipped area and is positioned relative to the clipper */
+    
+    <!-- .video-clipper .video-label.right {
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+      z-index: 15;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    } -->
+
+
+      bottom: 15px;
+      z-index: 15;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.9rem;
