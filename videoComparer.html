@@ -19,17 +19,22 @@
       height: auto;
       margin: 40px auto;
       width: 50%;
+      max-height: 50%;
     }
 
     .video-compare-item.active {
       display: block;
+      width: 50%;
       height: auto;
+      max-height: 50%;
     }
 
     .video-compare-container {
       position: relative;
       width: 100%;
       padding-top: 56.25%;
+      height: auto;
+      max-height: 50%;
       /* 16:9 高宽比 */
     }
 
@@ -39,7 +44,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: auto;
       /* 填满容器 */
       object-fit: cover;
       /* 裁剪 */
@@ -61,7 +66,32 @@
       height: auto;
     }
 
-    #src-0 {
+    /*All vertical videos*/
+    #src-2 {
+      width: 100%;
+      /* 占满容器宽度 */
+      height: auto;
+      max-height: 100%;
+      /* 高度自适应，保持比例 */
+      display: block;
+      /* 避免出现下方空隙 */
+      object-fit:contain;
+      /* 如果想填满容器并裁切多余部分 */
+    }
+    #tgt-2 {
+      /* width: 100%; */
+      /* 占满容器宽度 */
+      height: auto;
+      max-height: 100%;
+      /* 高度自适应，保持比例 */
+      display: block;
+      /* 避免出现下方空隙 */
+      object-fit:contain;
+      /* 如果想填满容器并裁切多余部分 */
+    }
+
+    /*All horizontal videos*/
+    #src-0, #src-1 {
       width: 100%;
       /* 占满容器宽度 */
       height: auto;
@@ -72,8 +102,8 @@
       /* 如果想填满容器并裁切多余部分 */
     }
 
-    #tgt-0 {
-      width: 100%;
+    #tgt-0, #tgt-1 {
+      /* width: 100%; */
       /* 占满容器宽度 */
       height: auto;
       /* 高度自适应，保持比例 */
@@ -81,6 +111,26 @@
       /* 避免出现下方空隙 */
       object-fit: cover;
       /* 如果想填满容器并裁切多余部分 */
+    }
+
+    .video-label-v {
+      position: absolute;
+      bottom: 15px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      z-index: 10;
+    }
+
+    .video-label-v.left {
+      left: 16vw;
+    }
+
+    .video-label-v.right {
+      right: 14vw;
     }
 
     .video-label {
@@ -264,21 +314,23 @@
     </div>
 
     <div class="video-compare-item" id="comparison-2">
-      <div class="video-title">Bear - Ours vs Baseline</div>
+      <div class="video-title">Einstein - Ours vs Baseline</div>
       <div id="video-compare-container-2" class="video-compare-container">
         <video id='src-2' loop muted onclick="video_click(2)">
-          <source src="./static/videos/ein_fixed.mp4">
+          <!-- <source src="./static/videos/ein_fixed.mp4"> -->
+          <source src="./static/videos/4DGS_eninstein.mp4">
         </video>
 
         <div id="video-clipper-2" class="video-clipper">
 
           <video id='tgt-2' loop muted onclick="video_click(2)">
-            <source src="./static/videos/4DGS_eninstein.mp4">
+            <!-- <source src="./static/videos/4DGS_eninstein.mp4"> -->
+            <source src="./static/videos/ein_fixed.mp4">
           </video>
-          <div class="video-label left">Ours</div>
+          <div class="video-label-v left">Ours</div>
 
         </div>
-        <div class="video-label right">RoDyGS [Jeong 24]</div>
+        <div class="video-label-v right">4DGS [Wu 24]</div>
         <div class="dividing-line" id="dividing-line-2">
           <div class="circle">
             <span class="arrow left"></span>
@@ -329,7 +381,7 @@
       const videoClipper = document.getElementById(`video-clipper-${currentComparison}`);
       const clippedVideo = videoClipper.getElementsByTagName("video")[0];
       const dividingLine = document.getElementById(`dividing-line-${currentComparison}`);
-      const rightLabel = videoClipper.querySelector('.video-label.right');
+      // const rightLabel = videoClipper.querySelector('.video-label.right');
 
       function trackLocation(e) {
         const rect = videoContainer.getBoundingClientRect();
